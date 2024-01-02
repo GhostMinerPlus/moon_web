@@ -1,6 +1,7 @@
 mod components;
 mod router;
 mod views;
+mod util;
 
 use yew::prelude::*;
 use yew_router::{BrowserRouter, Switch};
@@ -38,7 +39,7 @@ impl Component for App {
 
         html! {
             <div class={"main"}>
-                <div class={"main-header"}>{"Huiwen"}</div>
+                <div class={"main-header"}>{"Moon"}</div>
                 <div class={"main-content"}>
                     <Menu {tree} switch={menu_switch} />
                     <BrowserRouter><Switch<Route> render={router::switch} /></BrowserRouter>
