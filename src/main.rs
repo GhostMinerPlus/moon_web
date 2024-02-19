@@ -1,27 +1,38 @@
 mod components;
 mod router;
-mod views;
 mod util;
+mod views;
 
 use yew::prelude::*;
 use yew_router::{BrowserRouter, Switch};
 
 use crate::{components::menu::Menu, router::Route};
 
-struct App {}
+struct App {
+    base_url: String,
+}
 
 impl Component for App {
     type Message = ();
     type Properties = ();
 
     fn create(ctx: &Context<Self>) -> Self {
-        Self {}
+        let base_url = web_sys::window()
+            .unwrap()
+            .document()
+            .unwrap()
+            .base_uri()
+            .unwrap()
+            .unwrap();
+        Self { base_url }
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let mut tree = components::menu::Node::new();
         tree.insert("home".to_string());
+        tree.insert("404".to_string());
 
+        let base_url = self.base_url.clone();
         let menu_switch = {
             Callback::from(move |key: String| {
                 let location = web_sys::window()
@@ -31,8 +42,8 @@ impl Component for App {
                     .location()
                     .unwrap();
                 let _ = match key.as_str() {
-                    "home" => location.replace("/"),
-                    _ => location.replace("/404"),
+                    "home" => location.replace(&format!("{base_url}")),
+                    _ => location.replace(&format!("{base_url}404")),
                 };
             })
         };
