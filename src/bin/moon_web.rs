@@ -1,12 +1,7 @@
-mod components;
-mod router;
-mod util;
-mod views;
-
 use yew::prelude::*;
 use yew_router::{BrowserRouter, Switch};
 
-use crate::{components::menu::Menu, router::Route};
+use moon_web::{components::{self, menu::Menu}, router::{self, Route}};
 
 struct App {
     base_url: String,

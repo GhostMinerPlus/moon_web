@@ -19,7 +19,7 @@ impl Component for Home {
         ctx.link().send_future(async {
             let r = JsFuture::from(
                 Request::new("/moon/service/get?name=edge")
-                    .get()
+                    .send("GET")
                     .await
                     .unwrap()
                     .text()
