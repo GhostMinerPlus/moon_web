@@ -1,7 +1,10 @@
 use yew::prelude::*;
 use yew_router::{BrowserRouter, Switch};
 
-use moon_web::{components::{self, menu::Menu}, router::{self, Route}};
+use moon_web::{
+    component::{self, menu::Menu},
+    router::{self, Route},
+};
 
 struct App {
     base_url: String,
@@ -23,7 +26,7 @@ impl Component for App {
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
-        let mut tree = components::menu::Node::new();
+        let mut tree = component::menu::Node::new();
         tree.insert("home".to_string());
         tree.insert("404".to_string());
 

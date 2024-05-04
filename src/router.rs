@@ -1,7 +1,7 @@
 use yew::{html, Html};
 use yew_router::prelude::*;
 
-use crate::views::home::Home;
+use crate::view::home::Home;
 
 #[derive(Clone, Routable, PartialEq)]
 pub enum Route {
