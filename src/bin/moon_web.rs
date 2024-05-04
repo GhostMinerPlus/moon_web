@@ -1,3 +1,4 @@
+use log::Level;
 use yew::prelude::*;
 use yew_router::{BrowserRouter, Switch};
 
@@ -59,5 +60,6 @@ impl Component for App {
 }
 
 fn main() {
+    let _ = console_log::init_with_level(Level::Info);
     yew::Renderer::<App>::new().render();
 }
