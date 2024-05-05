@@ -15,7 +15,7 @@ impl Component for App {
     type Message = ();
     type Properties = ();
 
-    fn create(ctx: &Context<Self>) -> Self {
+    fn create(_: &Context<Self>) -> Self {
         let base_url = web_sys::window()
             .unwrap()
             .document()
@@ -26,10 +26,9 @@ impl Component for App {
         Self { base_url }
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _: &Context<Self>) -> Html {
         let mut tree = component::menu::Node::new();
         tree.insert("home".to_string());
-        tree.insert("404".to_string());
 
         let base_url = self.base_url.clone();
         let menu_switch = {
