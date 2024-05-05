@@ -78,7 +78,7 @@ impl Home {
 
     fn build_service_view(service: &Service) -> Html {
         html! {
-            <a href={service.uri.clone()} target="_blank"></a>
+            <a href={service.uri.clone()} target="_blank">{service.uri.clone()}</a>
         }
     }
 }
@@ -116,7 +116,7 @@ impl Component for Home {
 
     fn view(&self, _: &Context<Self>) -> Html {
         html! {
-            <div style="background-color: white;">
+            <div style="width: 100%;background-color: white;">
                 {for self.server_v.iter().map(Home::build_server_view)}
             </div>
         }
