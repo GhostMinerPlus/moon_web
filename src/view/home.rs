@@ -99,9 +99,11 @@ impl Component for Home {
 
     fn view(&self, _: &Context<Self>) -> Html {
         html! {
-            {for self.server_v.iter().map(|item| {
-                html!(<li>{item.name.clone()}</li>)
-            })}
+            <ul>
+                {for self.server_v.iter().map(|item| {
+                    html!(<li>{format!("{}: {}", item.name, item.service_v[0].uri)}</li>)
+                })}
+            </ul>
         }
     }
 }
