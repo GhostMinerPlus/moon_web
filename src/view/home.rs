@@ -34,9 +34,17 @@ async fn fetch_server_v() -> io::Result<Vec<Server>> {
         let ip = rs["server"]["ip"][i][0].as_str().unwrap_or_default();
         let port = rs["server"]["port"][i][0].as_str().unwrap_or_default();
         let uri = if ip.contains(':') {
-            format!("http://[{ip}]:{port}/{name}/")
+            if port == "80" {
+                format!("http://[{ip}]/{name}/")
+            } else {
+                format!("http://[{ip}]:{port}/{name}/")
+            }
         } else {
-            format!("http://{ip}:{port}/{name}/")
+            if port == "80" {
+                format!("http://{ip}/{name}/")
+            } else {
+                format!("http://{ip}:{port}/{name}/")
+            }
         };
         server_v.push(Server {
             name: name.to_string(),
