@@ -33,7 +33,7 @@ async fn fetch_server_v() -> io::Result<Vec<Server>> {
         let name = rs["server"]["name"][i][0].as_str().unwrap_or_default();
         let ip = rs["server"]["ip"][i][0].as_str().unwrap_or_default();
         let port = rs["server"]["port"][i][0].as_str().unwrap_or_default();
-        let uri = format!("{ip}:{port}");
+        let uri = format!("http://{ip}:{port}/{name}/");
         server_v.push(Server {
             name: name.to_string(),
             service_v: vec![Service {
@@ -64,6 +64,23 @@ pub struct Server {
 
 pub struct Home {
     server_v: Vec<Server>,
+}
+
+impl Home {
+    fn build_server_view(server: &Server) -> Html {
+        html! {
+            <div>
+                <div>{server.name.clone()}</div>
+                {for server.service_v.iter().map(Home::build_service_view)}
+            </div>
+        }
+    }
+
+    fn build_service_view(service: &Service) -> Html {
+        html! {
+            <a href={service.uri.clone()} target="_blank"></a>
+        }
+    }
 }
 
 impl Component for Home {
@@ -99,11 +116,9 @@ impl Component for Home {
 
     fn view(&self, _: &Context<Self>) -> Html {
         html! {
-            <ul>
-                {for self.server_v.iter().map(|item| {
-                    html!(<li>{format!("{}: {}", item.name, item.service_v[0].uri)}</li>)
-                })}
-            </ul>
+            <div style="background-color: white;">
+                {for self.server_v.iter().map(Home::build_server_view)}
+            </div>
         }
     }
 }
