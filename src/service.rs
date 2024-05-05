@@ -4,9 +4,9 @@ use wasm_bindgen_futures::JsFuture;
 
 use crate::util;
 
-pub async fn execute(script_tree: json::JsonValue) -> io::Result<json::JsonValue> {
+pub async fn moon_server_http_execute(script_tree: &str) -> io::Result<String> {
     let res = util::Request::new("/service/moon_server/execute")
-        .with_body_txt(&json::stringify(script_tree))?
+        .with_body_txt(script_tree)?
         .send("POST")
         .await?;
     let rs = JsFuture::from(res.text().map_err(util::map_js_error)?)
@@ -14,5 +14,5 @@ pub async fn execute(script_tree: json::JsonValue) -> io::Result<json::JsonValue
         .map_err(util::map_js_error)?
         .as_string()
         .ok_or(io::Error::new(io::ErrorKind::NotFound, "returned empty"))?;
-    Ok(json::parse(&rs).unwrap())
+    Ok(rs)
 }

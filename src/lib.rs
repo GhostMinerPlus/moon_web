@@ -1,5 +1,6 @@
-pub mod components;
+mod view;
+mod service;
+
+pub mod component;
 pub mod router;
 pub mod util;
-pub mod views;
-pub mod service;

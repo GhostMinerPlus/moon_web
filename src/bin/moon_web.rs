@@ -1,7 +1,11 @@
+use log::Level;
 use yew::prelude::*;
 use yew_router::{BrowserRouter, Switch};
 
-use moon_web::{components::{self, menu::Menu}, router::{self, Route}};
+use moon_web::{
+    component::{self, menu::Menu},
+    router::{self, Route},
+};
 
 struct App {
     base_url: String,
@@ -11,7 +15,7 @@ impl Component for App {
     type Message = ();
     type Properties = ();
 
-    fn create(ctx: &Context<Self>) -> Self {
+    fn create(_: &Context<Self>) -> Self {
         let base_url = web_sys::window()
             .unwrap()
             .document()
@@ -22,10 +26,9 @@ impl Component for App {
         Self { base_url }
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
-        let mut tree = components::menu::Node::new();
+    fn view(&self, _: &Context<Self>) -> Html {
+        let mut tree = component::menu::Node::new();
         tree.insert("home".to_string());
-        tree.insert("404".to_string());
 
         let base_url = self.base_url.clone();
         let menu_switch = {
@@ -56,5 +59,6 @@ impl Component for App {
 }
 
 fn main() {
+    let _ = console_log::init_with_level(Level::Info);
     yew::Renderer::<App>::new().render();
 }
