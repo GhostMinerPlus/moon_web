@@ -1,10 +1,9 @@
-use std::io;
-
 use yew::prelude::*;
 
-use crate::service;
+use crate::element::Label;
+use crate::{component::container::*, err, service};
 
-async fn fetch_server_v() -> io::Result<Vec<Server>> {
+async fn fetch_server_v() -> err::Result<Vec<Server>> {
     let server = ["$->$output = = root->web_server _", "server"].join("\\n");
     let name = ["$->$output = = $->$input->name _", "name"].join("\\n");
     let ip = ["$->$output = = $->$input->ip _", "ip"].join("\\n");
@@ -21,7 +20,7 @@ async fn fetch_server_v() -> io::Result<Vec<Server>> {
     .await?;
     let rs = json::parse(&rs).map_err(|e| {
         log::warn!("when fetch_server_v:\n{e}");
-        io::Error::other(e)
+        err::Error::Other(e.to_string())
     })?;
 
     let mut server_v = Vec::new();
@@ -81,10 +80,12 @@ pub struct Home {
 impl Home {
     fn build_server_view(server: &Server) -> Html {
         html! {
-            <div>
-                <div>{server.name.clone()}</div>
-                {for server.service_v.iter().map(Home::build_service_view)}
-            </div>
+            <Column>
+                <Label txt={server.name.clone()}></Label>
+                <Column>
+                    {for server.service_v.iter().map(Home::build_service_view)}
+                </Column>
+            </Column>
         }
     }
 
@@ -128,9 +129,9 @@ impl Component for Home {
 
     fn view(&self, _: &Context<Self>) -> Html {
         html! {
-            <div style="width: 100%;background-color: white;">
+            <Column>
                 {for self.server_v.iter().map(Home::build_server_view)}
-            </div>
+            </Column>
         }
     }
 }
