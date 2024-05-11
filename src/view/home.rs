@@ -80,9 +80,9 @@ pub struct Home {
 impl Home {
     fn build_server_view(server: &Server) -> Html {
         html! {
-            <Column>
+            <Column style={format!("width: 100%;")}>
                 <Label txt={server.name.clone()}></Label>
-                <Column>
+                <Column style={format!("width: 100%;margin: 1em 0;")}>
                     {for server.service_v.iter().map(Home::build_service_view)}
                 </Column>
             </Column>
@@ -129,7 +129,7 @@ impl Component for Home {
 
     fn view(&self, _: &Context<Self>) -> Html {
         html! {
-            <Column>
+            <Column style={format!("width: 100%;")}>
                 {for self.server_v.iter().map(Home::build_server_view)}
             </Column>
         }

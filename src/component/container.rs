@@ -2,6 +2,8 @@ use yew::{html, Children, Context, Html, Properties};
 
 #[derive(Clone, Debug, Properties, PartialEq)]
 pub struct ColumnProps {
+    #[prop_or_default]
+    pub style: String,
     pub children: Children,
 }
 
@@ -17,8 +19,12 @@ impl yew::Component for Column {
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
+        let style = format!(
+            "display: flex;flex-direction: column;background-color: white;{}",
+            ctx.props().style
+        );
         html! {
-            <div style={"display: flex;flex-direction: column;height: 100%;background-color: white;"}>
+            <div style={style}>
                 { ctx.props().children.clone() }
             </div>
         }
@@ -27,7 +33,8 @@ impl yew::Component for Column {
 
 #[derive(Clone, Debug, Properties, PartialEq)]
 pub struct RowProps {
-    children: Children,
+    pub style: String,
+    pub children: Children,
 }
 
 pub struct Row {}
@@ -42,8 +49,12 @@ impl yew::Component for Row {
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
+        let style = format!(
+            "display: flex;flex-direction: row;background-color: white;{}",
+            ctx.props().style
+        );
         html! {
-            <div style={"display: flex;flex-direction: row;width: 100%;background-color: white;"}>
+            <div style={style}>
                 { ctx.props().children.clone() }
             </div>
         }

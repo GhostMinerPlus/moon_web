@@ -3,6 +3,8 @@ use yew::{html, Context, Html, Properties};
 #[derive(Clone, Debug, Properties, PartialEq)]
 pub struct Props {
     #[prop_or_default]
+    pub style: String,
+    #[prop_or_default]
     pub txt: String,
 }
 
@@ -18,8 +20,12 @@ impl yew::Component for Label {
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
+        let style = format!(
+            "display: flex;flex-direction: column;background-color: white;{}",
+            ctx.props().style
+        );
         html! {
-            <label>{ctx.props().txt.clone()}</label>
+            <label style={style}>{ctx.props().txt.clone()}</label>
         }
     }
 }
