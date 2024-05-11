@@ -20,7 +20,7 @@ impl yew::Component for Column {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let style = format!(
-            "display: flex;flex-direction: column;background-color: white;{}",
+            "display: flex;flex-direction: column;{}",
             ctx.props().style
         );
         html! {
@@ -50,7 +50,7 @@ impl yew::Component for Row {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let style = format!(
-            "display: flex;flex-direction: row;background-color: white;{}",
+            "display: flex;flex-direction: row;{}",
             ctx.props().style
         );
         html! {
