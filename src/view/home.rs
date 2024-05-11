@@ -129,7 +129,7 @@ impl Component for Home {
 
     fn view(&self, _: &Context<Self>) -> Html {
         html! {
-            <Column style={format!("width: 100%;height: 100%;margin: 1em;padding: 1em;")}>
+            <Column style={format!("width: 100%;height: 100%;border: lem solid grey;padding: 1em;")}>
                 {for self.server_v.iter().map(Home::build_server_view)}
             </Column>
         }
