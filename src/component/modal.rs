@@ -15,15 +15,21 @@ pub struct ModalProps {
     pub children: yew::Children,
 }
 
-pub struct Modal {}
+pub enum Msg {
+    Closed,
+}
+
+pub struct Modal {
+    is_alive: bool,
+}
 
 impl yew::Component for Modal {
-    type Message = ();
+    type Message = Msg;
 
     type Properties = ModalProps;
 
     fn create(_ctx: &yew::Context<Self>) -> Self {
-        Self {}
+        Self { is_alive: true }
     }
 
     fn view(&self, ctx: &yew::Context<Self>) -> yew::Html {
@@ -42,9 +48,16 @@ impl yew::Component for Modal {
             .get_with_index(0)
             .unwrap();
 
+        let style = format!("position: absolute;width: 100%;height: 100%;background-color: #7f7f7f7f;overflow: hide;{}",
+            if self.is_alive {
+                "display: flex;"
+            } else {
+                "display: none;"
+            });
+
         yew::create_portal(
             yew::html! {
-               <div style={"position: absolute;width: 100%;height: 100%;display: flex;background-color: #7f7f7f7f;overflow: hide;"} {onclick}>
+               <div style={style} {onclick}>
                     <div style={format!("margin: auto auto;{}{}{}",
                         style_or("width", &props.width, None),
                         style_or("height", &props.height, None),
@@ -56,5 +69,14 @@ impl yew::Component for Modal {
             },
             modal_host,
         )
+    }
+
+    fn update(&mut self, _: &yew::prelude::Context<Self>, msg: Self::Message) -> bool {
+        match msg {
+            Msg::Closed => {
+                self.is_alive = false;
+                true
+            }
+        }
     }
 }
