@@ -142,7 +142,7 @@ impl Component for Home {
                     height={format!("100%")}
                     bk_color={format!("white")}
                     padding={format!("1em")}
-                    overflow_y={format!("auto")}>
+                    overflow_y={format!("overlay")}>
                     {for self.server_v.iter().map(Home::build_server_view)}
                     {for self.server_v.iter().map(Home::build_server_view)}
                     {for self.server_v.iter().map(Home::build_server_view)}
