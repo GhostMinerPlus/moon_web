@@ -7,6 +7,17 @@ use web_sys::{Document, Location, RequestInit, RequestMode, Response};
 use crate::err;
 
 // Public
+pub fn style_or(name: &str, value: &str, default: Option<&str>) -> String {
+    if value.is_empty() {
+        match default {
+            Some(v) => format!("{name}: {v};"),
+            None => String::new(),
+        }
+    } else {
+        format!("{name}: {value};")
+    }
+}
+
 pub fn map_js_error(e: JsValue) -> err::Error {
     let js_msg = js_sys::Reflect::get(&e, &JsValue::from_str("message")).unwrap();
     let msg = js_msg.as_string().unwrap();

@@ -1,15 +1,6 @@
 use yew::{html, Children, Context, Html, Properties};
 
-fn style_or(name: &str, value: &str, default: Option<&str>) -> String {
-    if value.is_empty() {
-        match default {
-            Some(v) => format!("{name}: {v};"),
-            None => String::new(),
-        }
-    } else {
-        format!("{name}: {value};")
-    }
-}
+use crate::util::style_or;
 
 // Public
 #[derive(Clone, Debug, Properties, PartialEq)]
