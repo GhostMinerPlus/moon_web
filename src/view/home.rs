@@ -136,10 +136,13 @@ impl Component for Home {
             <Column
                 width={format!("100%")}
                 height={format!("100%")}
-                border={format!("1em solid transparent")}
-                padding={format!("1em")}
-                padding_color={format!("white")}>
-                {for self.server_v.iter().map(Home::build_server_view)}
+                border={format!("1em solid transparent")}>
+                <Column
+                    width={format!("100%")}
+                    height={format!("100%")}
+                    bk_color={format!("white")}>
+                    {for self.server_v.iter().map(Home::build_server_view)}
+            </Column>
             </Column>
         }
     }

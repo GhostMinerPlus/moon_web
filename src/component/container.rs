@@ -23,11 +23,9 @@ pub struct ColumnProps {
     #[prop_or_default]
     pub border: String,
     #[prop_or_default]
-    pub padding: String,
-    #[prop_or_default]
     pub margin: String,
     #[prop_or_default]
-    pub padding_color: String,
+    pub bk_color: String,
     pub children: Children,
 }
 
@@ -44,14 +42,13 @@ impl yew::Component for Column {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let style = format!(
-            "display: flex;flex-direction: column;{}{}{}{}{}{}{}",
+            "display: flex;flex-direction: column;{}{}{}{}{}{}",
             style_or("width", &ctx.props().width, None),
             style_or("height", &ctx.props().height, None),
             style_or("flex", &ctx.props().flex, None),
             style_or("border", &ctx.props().border, None),
-            style_or("padding", &ctx.props().padding, None),
             style_or("margin", &ctx.props().margin, None),
-            style_or("padding-color", &ctx.props().padding_color, None),
+            style_or("background-color", &ctx.props().bk_color, None),
         );
         html! {
             <div style={style}>
@@ -72,11 +69,9 @@ pub struct RowProps {
     #[prop_or_default]
     pub border: String,
     #[prop_or_default]
-    pub padding: String,
-    #[prop_or_default]
     pub margin: String,
     #[prop_or_default]
-    pub padding_color: String,
+    pub bk_color: String,
     pub children: Children,
 }
 
@@ -93,14 +88,13 @@ impl yew::Component for Row {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let style = format!(
-            "display: flex;flex-direction: row;{}{}{}{}{}{}{}",
+            "display: flex;flex-direction: row;{}{}{}{}{}{}",
             style_or("width", &ctx.props().width, None),
             style_or("height", &ctx.props().height, None),
             style_or("flex", &ctx.props().flex, None),
             style_or("border", &ctx.props().border, None),
-            style_or("padding", &ctx.props().padding, None),
             style_or("margin", &ctx.props().margin, None),
-            style_or("padding-color", &ctx.props().padding_color, None),
+            style_or("background-color", &ctx.props().bk_color, None),
         );
         html! {
             <div style={style}>
