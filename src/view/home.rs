@@ -1,6 +1,5 @@
 use yew::prelude::*;
 
-use crate::component::modal;
 use crate::element::Label;
 use crate::{component::container::*, err, service};
 
@@ -144,11 +143,22 @@ impl Component for Home {
                     bk_color={format!("white")}
                     padding={format!("1em")}>
                     {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
+                    {for self.server_v.iter().map(Home::build_server_view)}
                 </Column>
-                <modal::Modal
-                    width={format!("62%")}>
-                    <Label txt={format!("hello")}></Label>
-                </modal::Modal>
             </Column>
         }
     }

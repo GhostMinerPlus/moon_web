@@ -35,7 +35,7 @@ impl yew::Component for Column {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let style = format!(
-            "display: flex;flex-direction: column;{}{}{}{}{}{}{}",
+            "display: flex;flex-direction: column;overflow-y: scroll;{}{}{}{}{}{}{}",
             style_or("width", &ctx.props().width, None),
             style_or("height", &ctx.props().height, None),
             style_or("flex", &ctx.props().flex, None),
@@ -84,7 +84,7 @@ impl yew::Component for Row {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let style = format!(
-            "display: flex;flex-direction: row;{}{}{}{}{}{}{}",
+            "display: flex;flex-direction: row;overflow-x: scroll;{}{}{}{}{}{}{}",
             style_or("width", &ctx.props().width, None),
             style_or("height", &ctx.props().height, None),
             style_or("flex", &ctx.props().flex, None),
