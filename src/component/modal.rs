@@ -37,7 +37,9 @@ impl yew::Component for Modal {
 
         let onclick = {
             let close = props.close.clone();
+            let link = ctx.link().clone();
             Callback::from(move |_| {
+                link.send_message(Msg::Closed);
                 close.emit(());
             })
         };
