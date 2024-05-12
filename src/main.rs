@@ -1,7 +1,7 @@
 use log::Level;
 use yew::prelude::*;
 
-use moon_web::{component, router, util};
+use moon_web::{component::{self, container::Column}, router, util};
 
 struct App {
     base_uri: String,
@@ -46,11 +46,13 @@ impl Component for App {
 
         html! {
             <div class={"main"}>
-                <div class={"main-header"}>{"Moon"}</div>
-                <div class={"main-content"}>
-                    <component::menu::Menu {tree} switch={menu_switch} />
-                    <router::Router />
-                </div>
+                <Column>
+                    <div class={"main-header"}>{"Moon"}</div>
+                    <div class={"main-content"}>
+                        <component::menu::Menu {tree} switch={menu_switch} />
+                        <router::Router />
+                    </div>
+                </Column>
             </div>
         }
     }
