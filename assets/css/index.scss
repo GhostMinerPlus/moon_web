@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 html,
@@ -8,6 +7,8 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
+
+    position: absolute;
 }
 
 .main {
@@ -15,8 +16,10 @@ body {
     height: 100%;
     margin: 0;
 
+    position: absolute;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
     >.main-header {
         @extend .importance-first;
@@ -34,7 +37,8 @@ body {
         @extend .importance-second;
 
         width: 100%;
-        height: calc(100% - 1.5em);
+        height: calc(100% - 2.0em);
+        flex: 1;
 
         display: flex;
 
