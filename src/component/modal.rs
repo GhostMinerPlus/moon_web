@@ -1,6 +1,6 @@
 use yew::Callback;
 
-use crate::util::style_or;
+use crate::util::{self, style_or};
 
 #[derive(yew::Properties, PartialEq)]
 pub struct ModalProps {
@@ -36,16 +36,25 @@ impl yew::Component for Modal {
             })
         };
 
-        yew::html! {
-           <div style={"position: fixed;width: 100%;height: 100%;display: flex;background-color: #7f7f7f7f;overflow: hide;"} {onclick}>
-                <div style={format!("margin: auto auto;{}{}{}",
-                    style_or("width", &props.width, None),
-                    style_or("height", &props.height, None),
-                    style_or("background-color", &props.bk_color, None))}
-                    onclick={Callback::from(|e: web_sys::MouseEvent|{e.stop_propagation()})}>
-                    {for props.children.iter()}
-                </div>
-           </div>
-        }
+        let modal_host = util::get_document()
+            .unwrap()
+            .get_elements_by_tag_name("body")
+            .get_with_index(0)
+            .unwrap();
+
+        yew::create_portal(
+            yew::html! {
+               <div style={"position: absolute;width: 100%;height: 100%;display: flex;background-color: #7f7f7f7f;overflow: hide;"} {onclick}>
+                    <div style={format!("margin: auto auto;{}{}{}",
+                        style_or("width", &props.width, None),
+                        style_or("height", &props.height, None),
+                        style_or("background-color", &props.bk_color, None))}
+                        onclick={Callback::from(|e: web_sys::MouseEvent|{e.stop_propagation()})}>
+                        {for props.children.iter()}
+                    </div>
+               </div>
+            },
+            modal_host,
+        )
     }
 }
