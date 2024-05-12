@@ -84,7 +84,7 @@ impl Home {
                 width={format!("100%")}
                 margin={format!("1em 0")}>
                 <Label txt={server.name.clone()}></Label>
-                <Column 
+                <Column
                     width={format!("100%")}
                     margin={format!("margin: 0.5em 0")}>
                     {for server.service_v.iter().map(Home::build_service_view)}
@@ -140,9 +140,10 @@ impl Component for Home {
                 <Column
                     width={format!("100%")}
                     height={format!("100%")}
-                    bk_color={format!("white")}>
+                    bk_color={format!("white")}
+                    padding={format!("1em")}>
                     {for self.server_v.iter().map(Home::build_server_view)}
-            </Column>
+                </Column>
             </Column>
         }
     }
