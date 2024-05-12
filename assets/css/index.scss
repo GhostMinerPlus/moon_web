@@ -19,6 +19,7 @@ body {
     position: absolute;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
     >.main-header {
         @extend .importance-first;
@@ -36,6 +37,7 @@ body {
         @extend .importance-second;
 
         width: 100%;
+        height: calc(100% - 2.0em);
         flex: 1;
 
         display: flex;
