@@ -144,21 +144,6 @@ impl Component for Home {
                     padding={format!("1em")}
                     overflow_y={format!("overlay")}>
                     {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
-                    {for self.server_v.iter().map(Home::build_server_view)}
                 </Column>
             </Column>
         }
