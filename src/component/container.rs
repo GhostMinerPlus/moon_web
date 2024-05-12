@@ -19,6 +19,8 @@ pub struct ColumnProps {
     pub padding: String,
     #[prop_or_default]
     pub bk_color: String,
+    #[prop_or_default]
+    pub overflow_y: String,
     pub children: Children,
 }
 
@@ -35,7 +37,7 @@ impl yew::Component for Column {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let style = format!(
-            "display: flex;flex-direction: column;overflow-y: auto;{}{}{}{}{}{}{}",
+            "display: flex;flex-direction: column;{}{}{}{}{}{}{}{}",
             style_or("width", &ctx.props().width, None),
             style_or("height", &ctx.props().height, None),
             style_or("flex", &ctx.props().flex, None),
@@ -43,6 +45,7 @@ impl yew::Component for Column {
             style_or("margin", &ctx.props().margin, None),
             style_or("padding", &ctx.props().padding, None),
             style_or("background-color", &ctx.props().bk_color, None),
+            style_or("overflow-y", &ctx.props().overflow_y, None),
         );
         html! {
             <div style={style}>
@@ -68,6 +71,8 @@ pub struct RowProps {
     pub padding: String,
     #[prop_or_default]
     pub bk_color: String,
+    #[prop_or_default]
+    pub overflow_x: String,
     pub children: Children,
 }
 
@@ -84,7 +89,7 @@ impl yew::Component for Row {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let style = format!(
-            "display: flex;flex-direction: row;overflow-x: auto;{}{}{}{}{}{}{}",
+            "display: flex;flex-direction: row;{}{}{}{}{}{}{}{}",
             style_or("width", &ctx.props().width, None),
             style_or("height", &ctx.props().height, None),
             style_or("flex", &ctx.props().flex, None),
@@ -92,6 +97,7 @@ impl yew::Component for Row {
             style_or("margin", &ctx.props().margin, None),
             style_or("padding", &ctx.props().padding, None),
             style_or("background-color", &ctx.props().bk_color, None),
+            style_or("overflow-x", &ctx.props().overflow_x, None),
         );
         html! {
             <div style={style}>
